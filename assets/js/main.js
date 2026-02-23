@@ -255,4 +255,25 @@
     });
   }
 
+  /* =========================================
+     INAZUMA ELEVEN - VENTANAS EMERGENTES (MODALES)
+     ========================================= */
+
+  // Función para abrir la ventana del jugador (haciendo que pase a nivel global)
+  window.abrirModal = function(idModal) {
+    document.getElementById(idModal).style.display = "block";
+  };
+
+  // Función para cerrarla al darle a la 'X' (haciendo que pase a nivel global)
+  window.cerrarModal = function(idModal) {
+    document.getElementById(idModal).style.display = "none";
+  };
+
+  // Cerrar la ventana si haces clic fuera de ella (en lo oscuro)
+  window.onclick = function(event) {
+    if (event.target.classList.contains('inazuma-modal')) {
+      event.target.style.display = "none";
+    }
+  };
+
 })();
