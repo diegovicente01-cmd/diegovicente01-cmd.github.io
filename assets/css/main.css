@@ -1488,3 +1488,323 @@ section,
   opacity: 0;
 }
 
+/* =========================================
+   INAZUMA ELEVEN - ESTILOS DEL CAMPO Y JUGADORES
+   ========================================= */
+
+.inazuma-field-section {
+  padding: 40px 0;
+  background-color: #111;
+}
+
+.soccer-field {
+  position: relative;
+  width: 100%;
+  background-color: #2e7d32; /* Verde por si falla la imagen de fondo */
+  border: 4px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+}
+
+.field-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.85;
+}
+
+/* --- Los Jugadores (Versión Cuerpo Entero) --- */
+.player {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.player:hover {
+  transform: translateX(-50%) scale(1.15); /* Mantiene el centrado y además lo hace grande */
+}
+
+.player-icon {
+  height: 140px; /* ¡AQUÍ ESTÁ LA CLAVE! Subimos de 90px a 140px para que se vean bien grandes */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; 
+}
+
+.player-icon img {
+  height: 100%; 
+  width: auto; 
+  object-fit: contain; 
+  filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.6)); 
+}
+
+.player-name {
+  margin-top: 5px;
+  background: #18d26e;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 4px 12px; /* Un pelín más de espacio a los lados para que respire el texto */
+  border-radius: 10px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  white-space: nowrap; /* ¡ESTA ES LA MAGIA! Obliga al texto a quedarse en una sola línea */
+}
+
+/* --- Posiciones Exactas en el Campo --- */
+
+/* Delanteros: */
+.p-xavier { top: 12%; left: 25%; transform: translateX(-50%); }
+.p-axel   { top: 12%; left: 75%; transform: translateX(-50%); }
+
+/* Mediocentros: Shawn y Nathan muy a las bandas, Jude y Caleb más anchos */
+.p-aphrodite { top: 26%; left: 50%; transform: translateX(-50%); } 
+.p-samford     { top: 32%; left: 12%; transform: translateX(-50%); } 
+.p-austin    { top: 32%; left: 88%; transform: translateX(-50%); }
+.p-jude      { top: 45%; left: 30%; transform: translateX(-50%); } 
+.p-caleb     { top: 45%; left: 70%; transform: translateX(-50%); }
+
+/* Defensas: Más abiertos cubriendo la línea del área */
+.p-shawn { bottom: 24%; left: 18%; transform: translateX(-50%); }
+.p-jack   { bottom: 18%; left: 50%; transform: translateX(-50%); }
+.p-nathan { bottom: 24%; left: 82%; transform: translateX(-50%); }
+
+/* Portero */
+.p-mark { bottom: 2%; left: 50%; transform: translateX(-50%); }
+
+/* Ajustes para que se vea bien en móviles */
+@media (max-width: 768px) {
+  .player-icon { height: 60px; } /* Jugadores más pequeños en móvil */
+  .player-name { font-size: 0.6rem; padding: 1px 6px; }
+}
+
+/* =========================================
+   INAZUMA ELEVEN - ESTILOS DE LAS VENTANAS (MODALES)
+   ========================================= */
+
+.inazuma-modal {
+  display: none; 
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-contenido {
+  background-color: #111;
+  margin: 10% auto;
+  padding: 30px;
+  border: 1px solid #18d26e;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  color: #fff;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto; 
+}
+
+.cerrar-modal {
+  color: #18d26e;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cerrar-modal:hover {
+  color: #fff;
+}
+
+.tecnica-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  background: #222;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #18d26e;
+}
+
+.tecnica-item img {
+  width: 120px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.tecnica-texto h4 {
+  color: #18d26e;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+  .tecnica-item { flex-direction: column; text-align: center; }
+  .tecnica-item img { width: 100%; max-width: 200px; }
+}
+
+/* =========================================
+   TÉCNICAS COMBINADAS (BOTÓN Y ESTRUCTURA LATERAL)
+   ========================================= */
+
+/* --- Estilos del Botón en el campo (Igual que antes) --- */
+/* =========================================
+   BOTÓN EXPANSIBLE (RAYO)
+   ========================================= */
+
+/* Estado normal: Un círculo perfecto */
+.btn-tecnicas-expansible {
+  position: absolute; /* Ajusta esto top/left según donde lo tengas en tu campo */
+  top: 20px;
+  left: 20px;
+  
+  display: flex;
+  align-items: center;
+  background-color: #20c966; /* El verde Inazuma de tu captura */
+  border: 2px solid white;
+  border-radius: 50px; /* Lo hace completamente redondo */
+  cursor: pointer;
+  overflow: hidden; /* Oculta el texto que sobresale */
+  
+  /* Medidas fijas para que sea un círculo */
+  width: 50px; 
+  height: 50px;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  
+  /* La animación de expansión */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* El icono del rayo siempre visible en el centro */
+.icono-rayo {
+  font-size: 24px;
+  min-width: 50px; /* Ocupa todo el círculo inicial */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-2px, 0px);
+}
+
+/* El texto oculto inicialmente */
+.texto-rayo {
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  white-space: nowrap; /* Evita que el texto se parta en varias líneas */
+  opacity: 0; /* Invisible */
+  transform: translateX(-10px); /* Ligeramente desplazado para hacer un efecto de entrada */
+  transition: all 0.3s ease;
+}
+
+/* ⚡ ESTADO HOVER: Cuando pasas el ratón ⚡ */
+.btn-tecnicas-expansible:hover {
+  width: 270px; /* Se estira para que quepa el texto */
+}
+
+.btn-tecnicas-expansible:hover .texto-rayo {
+  opacity: 1; /* Se hace visible */
+  transform: translateX(0); /* Vuelve a su sitio */
+  padding-right: 20px; /* Espacio extra a la derecha */
+}
+
+/* --- NUEVOS ESTILOS PARA LA ESTRUCTURA DE 3 COLUMNAS --- */
+
+/* Contenedor principal de la técnica combinada */
+.combo-item {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre los 3 bloques */
+  margin-top: 25px;
+  background: #1a1a1a; /* Fondo un pelín más oscuro para destacar */
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 5px solid #18d26e;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* 1. COLUMNA IZQUIERDA: Contenedor de los jugadores de pie */
+.jugadores-combo-full {
+  display: flex;
+  align-items: flex-end; /* Alineados por los pies */
+  justify-content: center;
+  height: 140px; /* Altura fija para que se vean imponentes */
+  width: 200px; /* Ancho fijo */
+  min-width: 200px; /* Evita que se reduzca el ancho */
+  flex-shrink: 0; /* Evita que se aplasten si hay poco espacio */
+  padding-right: 15px;
+  border-right: 2px solid #333; /* Pequeña línea separadora */
+  box-sizing: border-box;
+}
+
+.jugadores-combo-full img {
+  max-height: 140px; /* Asegura que no se salgan de la altura del contenedor */
+  width: auto;
+  max-width: 100%; /* Evita que se salgan del ancho del contenedor */
+  object-fit: contain;
+  /* Sombra potente para que destaquen sobre el fondo oscuro */
+  filter: drop-shadow(0px 4px 3px rgba(0,0,0,0.9));
+  margin-right: -15px; /* ¡TRUCO! Un pequeño solapamiento para que queden más juntos como un equipo */
+  position: relative;
+  transition: transform 0.3s ease;
+}
+/* Pequeño efecto al pasar el ratón por los jugadores */
+.jugadores-combo-full img:hover { transform: scale(1.1); z-index: 10; }
+
+/* Orden de superposición para que el de más a la izquierda esté delante */
+.jugadores-combo-full img:nth-child(1) { z-index: 3; }
+.jugadores-combo-full img:nth-child(2) { z-index: 2; }
+.jugadores-combo-full img:nth-child(3) { z-index: 1; }
+
+
+/* 2. COLUMNA CENTRAL: El GIF de la técnica */
+.combo-gif {
+  width: 150px; /* Un tamaño generoso para el GIF */
+  height: auto;
+  border-radius: 8px;
+  border: 3px solid #333;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+
+/* 3. COLUMNA DERECHA: El texto */
+.combo-texto {
+    flex-grow: 1; /* Ocupa el resto del espacio */
+}
+
+.combo-texto h4 {
+  color: #18d26e;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Ajustes para móviles (se pone todo en vertical) --- */
+@media (max-width: 992px) {
+  .combo-item { flex-direction: column; text-align: center; padding: 15px; }
+  .jugadores-combo-full { 
+      height: 110px; 
+      margin-bottom: 15px; 
+      justify-content: center; 
+      border-right: none;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      padding-right: 0;
+      width: 100%;
+  }
+  .combo-gif { margin-bottom: 15px; width: 100%; max-width: 250px; }
+}
+
